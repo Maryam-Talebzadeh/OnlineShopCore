@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using OnlineShopCore.DataAccess;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<OnlineShopCoreContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("OnlineShopDbConnectionString"));
+});
 
 var app = builder.Build();
 
